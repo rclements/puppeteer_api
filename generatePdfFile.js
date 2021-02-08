@@ -20,15 +20,15 @@ Supported params are
   * landscape: boolean (false)
 */
 let browser;
-const loadEmptyPage = async () => {
+async function loadEmptyPage() {
   const dummy = "<span class='r'>r</span><span class='b'>b</span>";
   return generatePdfFile({
     headerTemplate: `${dummy}`,
     footerTemplate: `${dummy}`,
     content: `<html><head></head><body>${dummy}</body></html>`,
   });
-};
-const startBrowser = async () => {
+}
+async function startBrowser() {
   if (browser) {
     browser.removeListener("disconnected", startBrowser);
     browser.close();
@@ -47,8 +47,8 @@ const startBrowser = async () => {
   browser.on("disconnected", startBrowser);
   await loadEmptyPage();
   return browser;
-};
-const generateOptions = (params) => {
+}
+function generateOptions(params) {
   const marginLeft = get(params, "marginLeft", "6.25mm");
   const marginRight = get(params, "marginRight", "6.25mm");
   const marginTop = get(params, "marginTop", "16.25mm");
@@ -80,8 +80,8 @@ const generateOptions = (params) => {
     },
   };
   return options;
-};
-const generatePdfFile = async (params) => {
+}
+async function generatePdfFile(params) {
   const start = new Date();
   const page = await browser.newPage();
   const { content, ...options } = generateOptions(params);
@@ -101,9 +101,9 @@ const generatePdfFile = async (params) => {
     console.log(JSON.stringify({ renderPeriod, renderedCorrectly }));
     await page.close();
   }
-};
+}
 
-const normalizeFormat = (format = "a4") => {
+function normalizeFormat(format = "a4") {
   return (
     {
       letter: "Letter",
@@ -119,12 +119,12 @@ const normalizeFormat = (format = "a4") => {
       a6: "A6",
     }[`${format}`] || "A4"
   );
-};
-const browserActive = () => {
+}
+function browserActive() {
   if (browser && browser.isConnected()) {
     return true;
   } else {
     return false;
   }
-};
+}
 module.exports = { generatePdfFile, browserActive, startBrowser };
