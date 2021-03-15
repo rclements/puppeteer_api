@@ -29,5 +29,6 @@ USER pptruser
 
 RUN yarn install
 
+EXPOSE 6000
 
 CMD [ "yarn","start" ]
