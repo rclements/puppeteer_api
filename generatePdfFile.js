@@ -8,6 +8,8 @@ function get(obj, field, defaultValue) {
 }
 /*
 Supported params are 
+  * width: unit (text),
+  * height: unit (text),
   * marginLeft: unit (text),
   * marginRight: unit (text),
   * marginTop: unit (text),
@@ -72,6 +74,8 @@ function generateOptions(params) {
     printBackground,
     landscape,
     format,
+    height: get(params, "height"),
+    width: get(params, "width"),
     margin: {
       left: marginLeft,
       right: marginRight,
@@ -103,22 +107,20 @@ async function generatePdfFile(params) {
   }
 }
 
-function normalizeFormat(format = "a4") {
-  return (
-    {
-      letter: "Letter",
-      legal: "Legal",
-      tabloid: "Tabloid",
-      ledger: "Ledger",
-      a0: "A0",
-      a1: "A1",
-      a2: "A2",
-      a3: "A3",
-      a4: "A4",
-      a5: "A5",
-      a6: "A6",
-    }[`${format}`] || "A4"
-  );
+function normalizeFormat(format) {
+  return {
+    letter: "Letter",
+    legal: "Legal",
+    tabloid: "Tabloid",
+    ledger: "Ledger",
+    a0: "A0",
+    a1: "A1",
+    a2: "A2",
+    a3: "A3",
+    a4: "A4",
+    a5: "A5",
+    a6: "A6",
+  }[`${format}`.toLowerCase()];
 }
 function browserActive() {
   if (browser && browser.isConnected()) {
