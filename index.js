@@ -27,7 +27,7 @@ server.get("/ready", async (req, res) => {
   }
 });
 startBrowser().then(() => {
-  server.listen(port, (err) => {
+  server.listen(port, "0.0.0.0", (err) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
