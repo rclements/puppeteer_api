@@ -10,20 +10,20 @@ into `PDF`.
 ## Installation
 
 ```sh
-yarn install
+npm install
 ```
 
 ## Run
 
 ```sh
-yarn start
+npm run start
 ```
 
 This will start the application with port 6000.
 To change port
 
 ```sh
-PORT=3030 yarn start
+PORT=3030 npm run start
 ```
 
 ## Endpoints

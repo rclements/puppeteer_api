@@ -1,9 +1,10 @@
-FROM node:12.5.0-slim
+FROM node:18.16.0-slim
 
 WORKDIR /app
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+RUN apt-get update \
+  && apt-get install -yy wget gnupg gnupg2  gnupg1\
+  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
   && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-  && apt-get update \
   && apt-get install -yy \
   ca-certificates libappindicator1 libasound2 libatk1.0-0 \
   libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 \
@@ -27,8 +28,8 @@ RUN chown -R pptruser:pptruser /app
 # Run everything after as non-privileged user.
 USER pptruser
 
-RUN yarn install
+RUN npm install
 
 EXPOSE 6000
 
-CMD [ "yarn","start" ]
+CMD [ "npm","start" ]
