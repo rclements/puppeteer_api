@@ -28,5 +28,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/mortadaak/puppeteer_api:latest
-            ghcr.io/mortadaak/puppeteer_api:$GITHUB_SHA
+            ghcr.io/rclements/puppeteer_api:latest
+            ghcr.io/rclements/puppeteer_api:$GITHUB_SHA
