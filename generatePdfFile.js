@@ -45,6 +45,7 @@ async function startBrowser() {
       "--disable-web-security",
       "--disable-gpu",
     ],
+    timeout: 270
   });
   browser.on("disconnected", startBrowser);
   await loadEmptyPage();
