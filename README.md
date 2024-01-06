@@ -44,3 +44,4 @@ Post to `/pdf` with these params
 - landscape: boolean (false)
 
 the result will be the `PDF` binary.
+
