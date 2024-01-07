@@ -44,8 +44,7 @@ async function startBrowser() {
       "--disable-dev-shm-usage",
       "--disable-web-security",
       "--disable-gpu",
-    ],
-    timeout: 270
+    ]
   });
   browser.on("disconnected", startBrowser);
   await loadEmptyPage();
@@ -83,6 +82,7 @@ function generateOptions(params) {
       top: marginTop,
       bottom: marginBottom,
     },
+    timeout: 270
   };
   return options;
 }
