@@ -82,7 +82,7 @@ function generateOptions(params) {
       top: marginTop,
       bottom: marginBottom,
     },
-    timeout: 270
+    timeout: 270000
   };
   return options;
 }
